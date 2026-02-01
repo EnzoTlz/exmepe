@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trouvez votre raquette de padel - Guide d'achat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A2540;
+            --secondary: #FF6B35;
+            --accent: #00D4AA;
+            --text: #1A1A1A;
+            --text-light: #6B7280;
+            --bg: #FAFBFC;
+            --white: #FFFFFF;
+            --border: #E5E7EB;
+            --shadow: rgba(10, 37, 64, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .progress-container {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            padding: 20px 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 10px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .question-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: 0 4px 20px var(--shadow);
+            margin-bottom: 32px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.6s ease-out forwards;
+            border: 1px solid var(--border);
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .question-title {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 32px;
+            letter-spacing: -0.01em;
+        }
+
+        .options {
+            display: grid;
+            gap: 16px;
+        }
+
+        .option {
+            position: relative;
+            padding: 20px 24px;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .option:hover {
+            transform: translateX(8px);
+            border-color: var(--secondary);
+            background: var(--white);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
+        }
+
+        .option.selected {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            transform: translateX(8px);
+        }
+
+        .navigation {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            margin-top: 32px;
+        }
+
+        button {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Sora', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+            flex: 1;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #E65525;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 107, 53, 0.35);
+        }
+
+        .btn-primary:disabled {
+            background: var(--border);
+            color: var(--text-light);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+            padding: 16px 24px;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .results {
+            display: none;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, var(--primary), #0D3A5F);
+            border-radius: 24px;
+            padding: 48px;
+            color: var(--white);
+            margin-bottom: 32px;
+            box-shadow: 0 8px 32px rgba(10, 37, 64, 0.3);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .result-title {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .result-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .racket-recommendation {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 24px var(--shadow);
+            border: 1px solid var(--border);
+            animation: slideUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .racket-name {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .racket-specs {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--text);
+            min-width: 120px;
+        }
+
+        .spec-value {
+            color: var(--text-light);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 48px;
+            background: var(--secondary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background: #E65525;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .restart {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .restart-btn {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+            padding: 14px 32px;
+        }
+
+        .restart-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px 16px;
+            }
+
+            .question-card {
+                padding: 32px 24px;
+            }
+
+            .result-card,
+            .racket-recommendation {
+                padding: 32px 24px;
+            }
+
+            .navigation {
+                flex-direction: column-reverse;
+            }
+
+            .btn-secondary {
+                width: 100%;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Trouvez votre raquette de padel idéale</h1>
+            <p class="subtitle">Répondez à quelques questions pour découvrir la raquette qui correspond parfaitement à votre style de jeu</p>
+        </header>
+
+        <div class="progress-container hidden" id="progressContainer">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 sur 5</div>
+        </div>
+
+        <div id="quizContainer">
+            <!-- Les questions seront injectées ici -->
+        </div>
+
+        <div class="results" id="results">
+            <!-- Les résultats seront injectés ici -->
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                id: 1,
+                question: "Quel est votre niveau de jeu ?",
+                options: [
+                    { text: "Débutant - Je découvre le padel", value: "beginner" },
+                    { text: "Intermédiaire - Je joue régulièrement", value: "intermediate" },
+                    { text: "Avancé - Je participe à des compétitions", value: "advanced" }
+                ]
+            },
+            {
+                id: 2,
+                question: "Quel est votre style de jeu préféré ?",
+                options: [
+                    { text: "Contrôle et précision", value: "control" },
+                    { text: "Puissance et attaque", value: "power" },
+                    { text: "Polyvalent et équilibré", value: "balanced" }
+                ]
+            },
+            {
+                id: 3,
+                question: "À quelle fréquence jouez-vous ?",
+                options: [
+                    { text: "1 fois par semaine ou moins", value: "casual" },
+                    { text: "2 à 3 fois par semaine", value: "regular" },
+                    { text: "4 fois ou plus par semaine", value: "intensive" }
+                ]
+            },
+            {
+                id: 4,
+                question: "Quelle forme de raquette préférez-vous ?",
+                options: [
+                    { text: "Ronde - Maximum de contrôle", value: "round" },
+                    { text: "Diamant - Maximum de puissance", value: "diamond" },
+                    { text: "Goutte d'eau - Équilibre contrôle/puissance", value: "teardrop" }
+                ]
+            },
+            {
+                id: 5,
+                question: "Quel est votre budget approximatif ?",
+                options: [
+                    { text: "Moins de 80€", value: "budget" },
+                    { text: "80€ - 150€", value: "mid" },
+                    { text: "Plus de 150€", value: "premium" }
+                ]
+            }
+        ];
+
+        const rackets = {
+            beginner_control: {
+                name: "Artengo PR 160",
+                specs: {
+                    "Niveau": "Débutant",
+                    "Forme": "Ronde",
+                    "Poids": "360-375g",
+                    "Balance": "Basse",
+                    "Type": "Contrôle"
+                },
+                description: "Parfaite pour débuter avec un excellent contrôle et une grande tolérance aux erreurs. Sa forme ronde procure une maniabilité optimale.",
+                url: "https://www.decathlon.fr/p/raquette-de-padel-pr-160/_/R-p-331668"
+            },
+            beginner_power: {
+                name: "Kuikma PR 990 Power",
+                specs: {
+                    "Niveau": "Débutant/Intermédiaire",
+                    "Forme": "Goutte d'eau",
+                    "Poids": "360-375g",
+                    "Balance": "Moyenne",
+                    "Type": "Puissance"
+                },
+                description: "Un excellent compromis entre contrôle et puissance pour progresser rapidement. Idéale pour développer votre jeu offensif.",
+                url: "https://www.decathlon.fr/p/raquette-de-padel-adulte-pr990-power/_/R-p-308291"
+            },
+            intermediate_control: {
+                name: "Kuikma PR 860 Comfort",
+                specs: {
+                    "Niveau": "Intermédiaire",
+                    "Forme": "Ronde",
+                    "Poids": "365g",
+                    "Balance": "Basse",
+                    "Type": "Contrôle"
+                },
+                description: "Conçue pour les joueurs intermédiaires recherchant précision et confort. Son sweet spot large pardonne les frappes décentrées.",
+                url: "https://www.decathlon.fr/p/raquette-de-padel-adulte-pr-860-comfort/_/R-p-306237"
+            },
+            intermediate_power: {
+                name: "Kuikma PR 990 Precision",
+                specs: {
+                    "Niveau": "Intermédiaire/Avancé",
+                    "Forme": "Goutte d'eau",
+                    "Poids": "360-375g",
+                    "Balance": "Haute",
+                    "Type": "Puissance"
+                },
+                description: "Pour les joueurs agressifs qui cherchent à dominer les échanges. Excellent compromis entre puissance de frappe et contrôle directionnel.",
+                url: "https://www.decathlon.fr/p/raquette-de-padel-adulte-pr990-precision/_/R-p-331669"
+            },
+            advanced_control: {
+                name: "Kuikma PR 990 Soft",
+                specs: {
+                    "Niveau": "Avancé",
+                    "Forme": "Ronde",
+                    "Poids": "365g",
+                    "Balance": "Basse",
+                    "Type": "Contrôle"
+                },
+                description: "La référence pour les joueurs exigeants qui privilégient le contrôle absolu et les effets. Toucher de balle exceptionnel.",
+                url: "https://www.decathlon.fr/p/raquette-de-padel-adulte-pr990-soft/_/R-p-308292"
+            },
+            advanced_power: {
+                name: "Kuikma PR 990 Hard",
+                specs: {
+                    "Niveau": "Avancé",
+                    "Forme": "Diamant",
+                    "Poids": "370g",
+                    "Balance": "Haute",
+                    "Type": "Puissance"
+                },
+                description: "Conçue pour les compétiteurs agressifs. Puissance de frappe maximale pour dominer en attaque et réaliser des smashs dévastateurs.",
+                url: "https://www.decathlon.fr/p/raquette-de-padel-adulte-pr990-hard/_/R-p-331670"
+            },
+            balanced: {
+                name: "Kuikma PR 830",
+                specs: {
+                    "Niveau": "Tous niveaux",
+                    "Forme": "Goutte d'eau",
+                    "Poids": "360-375g",
+                    "Balance": "Moyenne",
+                    "Type": "Polyvalent"
+                },
+                description: "La raquette polyvalente par excellence. Équilibre parfait entre contrôle et puissance pour s'adapter à toutes les situations de jeu.",
+                url: "https://www.decathlon.fr/p/raquette-de-padel-adulte-pr-830/_/R-p-306236"
+            }
+        };
+
+        let currentQuestion = 0;
+        let answers = {};
+
+        function startQuiz() {
+            currentQuestion = 0;
+            answers = {};
+            document.getElementById('progressContainer').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            const quizContainer = document.getElementById('quizContainer');
+            
+            quizContainer.innerHTML = `
+                <div class="question-card">
+                    <h2 class="question-title">${question.question}</h2>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <div class="option" onclick="selectOption(${question.id}, '${option.value}', this)">
+                                ${option.text}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="navigation">
+                        ${currentQuestion > 0 ? '<button class="btn-secondary" onclick="previousQuestion()">Précédent</button>' : '<div></div>'}
+                        <button class="btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>
+                            ${currentQuestion === questions.length - 1 ? 'Voir mes résultats' : 'Suivant'}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            updateProgress();
+        }
+
+        function selectOption(questionId, value, element) {
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            answers[questionId] = value;
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (!answers[questions[currentQuestion].id]) return;
+            
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} sur ${questions.length}`;
+        }
+
+        function getRacketRecommendation() {
+            const level = answers[1];
+            const style = answers[2];
+            
+            if (style === 'balanced') {
+                return rackets.balanced;
+            }
+            
+            if (level === 'beginner') {
+                return style === 'control' ? rackets.beginner_control : rackets.beginner_power;
+            } else if (level === 'intermediate') {
+                return style === 'control' ? rackets.intermediate_control : rackets.intermediate_power;
+            } else {
+                return style === 'control' ? rackets.advanced_control : rackets.advanced_power;
+            }
+        }
+
+        function showResults() {
+            const racket = getRacketRecommendation();
+            const quizContainer = document.getElementById('quizContainer');
+            const resultsContainer = document.getElementById('results');
+            
+            quizContainer.classList.add('hidden');
+            document.getElementById('progressContainer').classList.add('hidden');
+            
+            resultsContainer.innerHTML = `
+                <div class="result-card">
+                    <h2 class="result-title">Votre raquette idéale</h2>
+                    <p class="result-description">
+                        Basé sur vos réponses, nous avons sélectionné la raquette qui correspond parfaitement à votre profil de joueur et à vos objectifs.
+                    </p>
+                </div>
+                
+                <div class="racket-recommendation">
+                    <h3 class="racket-name">${racket.name}</h3>
+                    <div class="racket-specs">
+                        ${Object.entries(racket.specs).map(([key, value]) => `
+                            <div class="spec-item">
+                                <span class="spec-label">${key}</span>
+                                <span class="spec-value">${value}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <p style="color: var(--text-light); margin-bottom: 24px; line-height: 1.8;">
+                        ${racket.description}
+                    </p>
+                    <a href="${racket.url}" target="_blank" class="cta-button">
+                        Voir sur Decathlon
+                    </a>
+                </div>
+                
+                <div class="restart">
+                    <button class="restart-btn" onclick="restartQuiz()">Recommencer le questionnaire</button>
+                </div>
+            `;
+            
+            resultsContainer.classList.add('active');
+        }
+
+        function restartQuiz() {
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('quizContainer').classList.remove('hidden');
+            startQuiz();
+        }
+
+        startQuiz();
+    </script>
+</body>
+</html>
